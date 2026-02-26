@@ -66,10 +66,10 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 sh '''
-                    echo "✅ Deployment complete!"
-                    echo "📡 Service endpoints:"
+                    echo " Deployment complete!"
+                    echo " Service endpoints:"
                     kubectl get svc myapp-service
-                    echo "📦 Pods:"
+                    echo " Pods:"
                     kubectl get pods
                 '''
             }
@@ -79,7 +79,10 @@ pipeline {
     post {
         success {
             echo 'Pipeline executed successfully!'
-            echo "Access your app at: http://$(minikube ip):30007"
+            script {
+                def ip = sh(script: "minikube ip", returnStdout: true).trim()
+                echo "Access your app at: http://${ip}:30007"
+            }
         }
         failure {
             echo 'Pipeline failed. Check logs for details.'
