@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
         </head>
         <body>
             <div class="container">
-                <h1>CI/CD Pipeline Demo using Jenkins</h1>
+                <h1>CI/CD Pipeline Demo - Jenkins</h1>
                 <div class="info">
                     <h2>Application Information</h2>
                     <div class="badge">Pod: ${hostname}</div>
